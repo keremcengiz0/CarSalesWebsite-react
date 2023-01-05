@@ -7,13 +7,36 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import Badge from '@mui/material/Badge';
-import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-import AccountCircle from '@mui/icons-material/AccountCircle';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import { makeStyles } from '@material-ui/core/styles';
+import { Link, useNavigate } from 'react-router-dom';
+import { LockOpen } from "@mui/icons-material";
 
+
+
+
+
+
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+    maxWidth: 360,
+    backgroundColor: theme.palette.background.paper,
+  },
+  list: {
+    width: 250,
+  },
+  link: {
+    fontSize: '16px',
+    textDecoration: 'none',
+    boxShadow : "none",
+    color : "white"
+}
+}));
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -56,23 +79,22 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 function Navbar() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const classes = useStyles();
+  let navigate = useNavigate();
 
-  const isMenuOpen = Boolean(anchorEl);
+  const onClick = () => {
+      localStorage.removeItem("tokenKey");
+      localStorage.removeItem("currentUser");
+      localStorage.removeItem("refreshKey");
+      localStorage.removeItem("userName");
+      navigate("/auth");
+  }
 
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-  };
 
   const menuId = 'primary-search-account-menu';
+
   const renderMenu = (
     <Menu
-      anchorEl={anchorEl}
       anchorOrigin={{
         vertical: 'top',
         horizontal: 'right',
@@ -83,11 +105,7 @@ function Navbar() {
         vertical: 'top',
         horizontal: 'right',
       }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
   );
 
@@ -112,7 +130,7 @@ function Navbar() {
             sx={{ display: { xs: 'none', sm: 'block' } }}
             style = {{backgroundColor: '#8c9017', color:'white'}}
           >
-            sahibinden.com
+           <Link className={classes.link} to={{pathname : '/'}}> sahibinden.com </Link> 
           </Typography>
           <Search>
             <SearchIconWrapper>
@@ -134,22 +152,31 @@ function Navbar() {
                 <NotificationsIcon />
               </Badge>
             </IconButton>
+            
             <IconButton
               size="large"
               edge="end"
               aria-label="account of current user"
               aria-controls={menuId}
               aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <AccountCircle />
+                <Typography variant="h6">
+                        {localStorage.getItem("currentUser") == null ? <Link className={classes.link} to="/auth">Login/Register</Link> : 
+                        <div>  <IconButton className={classes.link} onClick={onClick}> <LockOpen> </LockOpen> </IconButton> 
+                        <Link className={classes.link} to={{pathname:'/users/' + localStorage.getItem("currentUser")}}>Profile</Link>
+                        </div>}
+                </Typography>
             </IconButton>
+
+         
+
           </Box>
         </Toolbar>
       </AppBar>
       {renderMenu}
       </Box>  
+      
   );
 }
 
