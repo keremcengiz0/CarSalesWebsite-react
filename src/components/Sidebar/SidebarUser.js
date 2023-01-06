@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Sidebar() {
+export default function SidebarUser() {
   const classes = useStyles();
 
   return (
@@ -27,17 +27,8 @@ export default function Sidebar() {
       <Divider />
       <List component="nav" className={classes.root} aria-label="mailbox folders">
       <ListItem >
-      <Link className={classes.link} to={{pathname :'/'}}> <h2 >Vasıta</h2> </Link> 
-        </ListItem>
-        <ListItem button>
-            <Link className={classes.link} to={{pathname :'/adverts/kategori/otomobil'}}> Otomobil </Link> 
-        </ListItem>
-        <ListItem button>
-            <Link className={classes.link} to={{pathname :'/adverts/kategori/suv'}}> Arazi, Suv & Pickup </Link> 
-        </ListItem>
-        <ListItem button>
-            <Link className={classes.link} to={{pathname :'/adverts/kategori/motosiklet'}}> Motosiklet </Link> 
-        </ListItem>
+      <Link className={classes.link} to={{pathname :'/users/{userId}/adverts'}}> <h2 >İlanlarım</h2> </Link> 
+    </ListItem>
       </List>
     </div>
   );

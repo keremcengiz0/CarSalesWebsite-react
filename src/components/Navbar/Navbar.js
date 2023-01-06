@@ -78,9 +78,22 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+
+
 function Navbar() {
   const classes = useStyles();
   let navigate = useNavigate();
+
+  const username = getCookie('username');
+  const userId = getCookie('currentUser');
+  const refreshToken = getCookie('refreshToken');
+  const accessToken = getCookie('accessToken');
+
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+  }
 
   const onClick = () => {
       localStorage.removeItem("tokenKey");
@@ -164,7 +177,7 @@ function Navbar() {
                 <Typography variant="h6">
                         {localStorage.getItem("currentUser") == null ? <Link className={classes.link} to="/auth">Login/Register</Link> : 
                         <div>  <IconButton className={classes.link} onClick={onClick}> <LockOpen> </LockOpen> </IconButton> 
-                        <Link className={classes.link} to={{pathname:'/users/' + localStorage.getItem("currentUser")}}>Profile</Link>
+                        <Link className={classes.link} to={{pathname :'/users/{userId}'}}> <h2 >Profile</h2> </Link> 
                         </div>}
                 </Typography>
             </IconButton>

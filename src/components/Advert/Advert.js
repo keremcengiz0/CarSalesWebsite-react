@@ -30,7 +30,7 @@ function Advert() {
             <ul>
                 {advertList.map(advertDto =>(
                     <li>
-                        {advertDto.title} {advertDto.description} {advertDto.vehicle.model}
+                        {advertDto.title}
                     </li>
                 ))}
             </ul>

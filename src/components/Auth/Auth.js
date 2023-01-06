@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { FormControl, InputLabel, Input, Button, FormHelperText } from '@material-ui/core';
-//import {useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
+import { PostWithoutAuth } from '../Services/HttpService';
 
 function Auth() {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    //let navigate = useNavigate();
+    let navigate = useNavigate();
 
 
     const handleUsername = (value) => {
@@ -18,11 +19,33 @@ function Auth() {
         setPassword(value);
     }
 
+    const sendRequest = (path) => {
+        PostWithoutAuth(("/auth/"+path), {
+            userName : username, 
+            password : password,
+          })
+          .then((res) => res.json())
+          .then((result) => {
+                                if(path === "register") {
+                                    navigate("/auth")         
+                                }
+                                if(path === "login") {
+                                    document.cookie = `tokenKey=${result.accessToken}`;
+                                    document.cookie = `refreshKey=${result.refreshToken}`;
+                                    document.cookie = `currentUser=${result.userId}`;
+                                    document.cookie = `userName=${username}`;
+                                    navigate("/")         
+                                }
+                            })
+          .catch((err) => console.log(err))
+    }
+
 
     const handleButton = (path) => {
+        sendRequest(path)
         setUsername("")
         setPassword("")
-        console.log(localStorage)
+        console.log(document.cookie)
     }
 
 
