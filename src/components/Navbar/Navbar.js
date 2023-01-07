@@ -16,11 +16,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { LockOpen } from "@mui/icons-material";
 
 
-
-
-
-
-
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -79,24 +74,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 
-
 function Navbar() {
   const classes = useStyles();
   let navigate = useNavigate();
 
-  const username = getCookie('username');
-  const userId = getCookie('currentUser');
-  const refreshToken = getCookie('refreshToken');
-  const accessToken = getCookie('accessToken');
-
-  function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-  }
-
   const onClick = () => {
-      localStorage.removeItem("tokenKey");
       localStorage.removeItem("currentUser");
       localStorage.removeItem("refreshKey");
       localStorage.removeItem("userName");
@@ -174,16 +156,15 @@ function Navbar() {
               aria-haspopup="true"
               color="inherit"
             >
-                <Typography variant="h6">
+                <Typography variant="h10">
                         {localStorage.getItem("currentUser") == null ? <Link className={classes.link} to="/auth">Login/Register</Link> : 
-                        <div>  <IconButton className={classes.link} onClick={onClick}> <LockOpen> </LockOpen> </IconButton> 
-                        <Link className={classes.link} to={{pathname :'/users/{userId}'}}> <h2 >Profile</h2> </Link> 
+                        <div>  
+                        <IconButton variant="h6" onClick={onClick}> <LockOpen> </LockOpen> </IconButton> 
+                        <Link className={classes.link} to={{pathname :'/users/' + localStorage.getItem("currentUser") +'/adverts'}}> Profile </Link> 
+                        
                         </div>}
                 </Typography>
-            </IconButton>
-
-         
-
+            </IconButton>         
           </Box>
         </Toolbar>
       </AppBar>

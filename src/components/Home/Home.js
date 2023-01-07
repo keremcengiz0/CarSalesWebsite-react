@@ -1,12 +1,10 @@
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Unstable_Grid2";
 import Sidebar from "../Sidebar/Sidebar";
-import Advert from "../Advert/Advert";
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";

@@ -4,7 +4,6 @@ import {useNavigate} from 'react-router-dom';
 import { PostWithoutAuth } from '../Services/HttpService';
 
 function Auth() {
-
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
@@ -30,10 +29,10 @@ function Auth() {
                                     navigate("/auth")         
                                 }
                                 if(path === "login") {
-                                    document.cookie = `tokenKey=${result.accessToken}`;
-                                    document.cookie = `refreshKey=${result.refreshToken}`;
-                                    document.cookie = `currentUser=${result.userId}`;
-                                    document.cookie = `userName=${username}`;
+                                    localStorage.setItem("tokenKey", result.accessToken);
+                                    localStorage.setItem("refreshKey", result.refreshToken);
+                                    localStorage.setItem("currentUser", result.userId);
+                                    localStorage.setItem("userName", username);
                                     navigate("/")         
                                 }
                             })
@@ -45,7 +44,7 @@ function Auth() {
         sendRequest(path)
         setUsername("")
         setPassword("")
-        console.log(document.cookie)
+        console.log(localStorage)
     }
 
 
