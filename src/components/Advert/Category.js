@@ -54,7 +54,8 @@ if(error) {
             <Box>
               <Grid container spacing={2}>
                 <Grid>
-                   <b> {location.pathname.substring(18,location.pathname.length).toUpperCase()} </b> </Grid>
+                   <b> {location.pathname.substring(18,location.pathname.length).toUpperCase()} </b> 
+                </Grid>
               </Grid>
             </Box>
             <Box>

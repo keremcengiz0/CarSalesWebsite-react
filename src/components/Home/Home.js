@@ -57,7 +57,9 @@ function Home() {
         <Grid xs={18} md={20}>
           <Box>
             <Grid container spacing={2}>
-              <Grid>{"Vasıta Vitrini"}</Grid>
+              <Grid>
+                <b> {"VASITA VİTRİNİ"} </b>
+              </Grid>
             </Grid>
           </Box>
           <Box>

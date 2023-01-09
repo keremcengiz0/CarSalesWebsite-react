@@ -51,7 +51,9 @@ function CurrentUserAdverts() {
               <Grid xs={18} md={20}>
                 <Box>
                   <Grid container spacing={2}>
-                    <Grid>{"İlanlarım"}</Grid>
+                    <Grid>
+                    <b> {"İLANLARIM"} </b>
+                    </Grid>
                   </Grid>
                 </Box>
                 <Box>
