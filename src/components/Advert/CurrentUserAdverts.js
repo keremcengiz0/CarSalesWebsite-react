@@ -5,7 +5,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Unstable_Grid2";
-import Sidebar from "../Sidebar/Sidebar";
+import SidebarUser from "../Sidebar/SidebarUser";
 import React, { useEffect, useState } from "react";
 import { Tooltip } from "@mui/material";
 
@@ -45,9 +45,8 @@ function CurrentUserAdverts() {
             <>
             <Grid container spacing={2} columns={24}>
               <Grid xs={6} md={4}>
-                <Sidebar></Sidebar>
+                <SidebarUser></SidebarUser>
               </Grid>
-      
               <Grid xs={18} md={20}>
                 <Box>
                   <Grid container spacing={2}>
