@@ -10,7 +10,6 @@ import React, { useEffect, useState } from "react";
 import { Tooltip } from "@mui/material";
 
 
-
 function CurrentUserAdverts() {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -34,7 +33,7 @@ function CurrentUserAdverts() {
 
 
     useEffect(() => {
-        refreshAdverts()
+        refreshAdverts();
       }, [])
 
     if(error) {                                                      

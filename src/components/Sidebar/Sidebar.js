@@ -5,7 +5,6 @@ import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
 import { Link } from 'react-router-dom';
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -19,8 +18,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 export default function Sidebar() {
   const classes = useStyles();
+
 
   return (
     <div className="sidebar">
@@ -30,13 +31,13 @@ export default function Sidebar() {
       <Link className={classes.link} to={{pathname :'/'}}> <h2 >Vasıta</h2> </Link> 
         </ListItem>
         <ListItem button>
-            <Link className={classes.link} to={{pathname :'/adverts/kategori/otomobil'}}> Otomobil </Link> 
+            <Link className={classes.link} to = {{pathname: '/adverts/kategori/otomobil'}} > Otomobil </Link> 
         </ListItem>
         <ListItem button>
-            <Link className={classes.link} to={{pathname :'/adverts/kategori/suv'}}> Arazi, Suv & Pickup </Link> 
+            <Link className={classes.link} to = {{pathname: '/adverts/kategori/suv'}} > Arazi, Suv & Pickup </Link> 
         </ListItem>
         <ListItem button>
-            <Link className={classes.link} to={{pathname :'/adverts/kategori/motosiklet'}}> Motosiklet </Link> 
+            <Link className={classes.link} to = {{pathname: '/adverts/kategori/motosiklet'}}> Motosiklet </Link> 
         </ListItem>
       </List>
     </div>
