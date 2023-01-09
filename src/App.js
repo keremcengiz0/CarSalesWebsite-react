@@ -5,6 +5,7 @@ import Home from './components/Home/Home';
 import Auth from './components/Auth/Auth';
 import CurrentUserAdverts from './components/Advert/CurrentUserAdverts';
 import CategoryAdverts from './components/Advert/Category';
+import AdvertForm from './components/Advert/AdvertForm';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
           <Route exact path='/auth' element = {<Auth/>} ></Route>
           <Route exact path='/users/:userId/adverts' element = {<CurrentUserAdverts/>} ></Route>
           <Route exact path='/adverts/kategori/:path' element = {<CategoryAdverts/>} ></Route>
+          <Route exact path='adverts/add-adverts' element = {<AdvertForm/>} ></Route>
         </Routes>
     </BrowserRouter>
     </div>
