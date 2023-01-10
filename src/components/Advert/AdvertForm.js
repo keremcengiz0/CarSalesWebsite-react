@@ -10,6 +10,12 @@ import InputLabel from "@mui/material/InputLabel";
 import axios from "axios";
 import UploadImages from "../Common/UploadImages";
 import CircularProgress from "@mui/material/CircularProgress";
+import MuiAlert from "@mui/material/Alert";
+import Snackbar from "@mui/material/Snackbar";
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -70,6 +76,13 @@ const AdvertForm = (props) => {
     setLoading(false);
   };
 
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setLoading(false);
+  };
+
   return (
     <form className={classes.root} noValidate autoComplete="off">
       <Grid container spacing={2} columns={24}>
@@ -90,6 +103,16 @@ const AdvertForm = (props) => {
                   </ImageListItem>
                 ))}
           </ImageList>
+
+          <Snackbar
+            open={loading}
+            autoHideDuration={3000}
+            onClose={handleClose}
+          >
+            <Alert onClose={handleClose} severity="info" sx={{ width: "100%" }}>
+              Resim yükleniyor. Lütfen bekleyiniz...{" "}
+            </Alert>
+          </Snackbar>
         </Grid>
         <Grid xs={7} md={7}>
           <Box>
