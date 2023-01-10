@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import CircularProgress from "@mui/material/CircularProgress";
 
 const UploadImages = (props) => {
   const [files, setFiles] = useState([]);
@@ -23,7 +22,7 @@ const UploadImages = (props) => {
 
   const handleUpload = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    props.setLoading(true);
     const formData = new FormData();
 
     for (let i = 0; i < files.length; i++) {
@@ -45,10 +44,10 @@ const UploadImages = (props) => {
       } else {
         console.log("Resim yükleme işlemi başarısız oldu.");
       }
-      setLoading(false);
+      props.setLoading(false);
     } catch (err) {
       console.log("Resim yükleme işlemi sırasında bir hata oluştu: " + err);
-      setLoading(false);
+      props.setLoading(false);
     }
 
     console.log(uploadedFiles);
@@ -57,11 +56,7 @@ const UploadImages = (props) => {
   return (
     <React.Fragment>
       <input type="file" onChange={handleFileSelection} multiple />
-      {loading ? (
-        <CircularProgress />
-      ) : (
-        <button onClick={handleUpload}>Upload</button>
-      )}{" "}
+      <button onClick={handleUpload}>Upload</button>
     </React.Fragment>
   );
 };

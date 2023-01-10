@@ -9,6 +9,7 @@ import Button from "@material-ui/core/Button";
 import InputLabel from "@mui/material/InputLabel";
 import axios from "axios";
 import UploadImages from "../Common/UploadImages";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,6 +33,7 @@ const AdvertForm = (props) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [advertList, setAdvertList] = useState([]);
   const [uploadedFiles, setUploadedFiles] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const classes = useStyles();
   /*
@@ -63,7 +65,9 @@ const AdvertForm = (props) => {
   };
 
   const imageSelectedHandler = (files) => {
+    setLoading(true);
     setUploadedFiles(files);
+    setLoading(false);
   };
 
   return (
@@ -71,11 +75,14 @@ const AdvertForm = (props) => {
       <Grid container spacing={2} columns={24}>
         <Grid xs={10} md={10}>
           <ImageList
-            sx={{ width: 1024, height: 800, marginLeft: 3 }}
-            cols={3}
+            sx={{ width: 500, height: 500, marginLeft: 3 }}
+            cols={1}
             rowHeight={164}
           >
-            {uploadedFiles.length === 0
+            {loading && (
+              <CircularProgress style={{ marginTop: 250, marginLeft: 300 }} />
+            )}
+            {!loading && uploadedFiles.length === 0
               ? "Resim Ekleyin"
               : uploadedFiles.map((file, index) => (
                   <ImageListItem key={index}>
@@ -112,7 +119,7 @@ const AdvertForm = (props) => {
 
         <Grid xs={7} md={7}>
           <Box>
-            <div style={{ margin: 1 }}>
+            <div>
               <FormControl sx={{ m: 1, minWidth: 120 }}>
                 <InputLabel id="fuel-select-label">Yakıt Türü</InputLabel>
                 <Select
@@ -153,7 +160,7 @@ const AdvertForm = (props) => {
               </FormControl>
             </div>
 
-            <div style={{ margin: -15 }}>
+            <div>
               <FormControl sx={{ m: 1, minWidth: 120 }}>
                 <InputLabel id="gearType-select-label">Vites Tipi</InputLabel>
                 <Select
@@ -169,7 +176,7 @@ const AdvertForm = (props) => {
               </FormControl>
             </div>
 
-            <div style={{ margin: 8 }}>
+            <div>
               <TextField
                 name="description"
                 label="Açıklama"
@@ -180,7 +187,10 @@ const AdvertForm = (props) => {
             </div>
 
             <div>
-              <UploadImages getUploadedFiles={imageSelectedHandler} />
+              <UploadImages
+                getUploadedFiles={imageSelectedHandler}
+                setLoading={setLoading}
+              />
               <Button
                 type="submit"
                 variant="contained"
