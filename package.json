@@ -15,6 +15,7 @@
     "axios": "^1.2.2",
     "bootstrap": "^5.2.3",
     "bootstrap-4-react": "^0.0.59",
+    "cloudinary": "^1.33.0",
     "cookie-parser": "^1.4.6",
     "js-cookie": "^3.0.1",
     "material-ui": "^0.20.2",

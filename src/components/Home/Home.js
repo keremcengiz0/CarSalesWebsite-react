@@ -44,8 +44,8 @@ function Home() {
   };
 
   useEffect(() => {
-    refreshAdverts()
-  }, [])
+    refreshAdverts();
+  }, []);
 
   return (
     <>
