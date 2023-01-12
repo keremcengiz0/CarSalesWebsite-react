@@ -40,39 +40,73 @@ const AdvertForm = (props) => {
   const [advertList, setAdvertList] = useState([]);
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [loading, setLoading] = useState(false);
-
   const classes = useStyles();
-  /*
-  const saveAdvert = () => {
+
+  const currentDate = new Date();
+
+  const [stateAdvert, setStateAdvert] = useState({
+    title: "",
+    description: "",
+    imageUrl: "",
+    brand: "",
+    series: "",
+    model: "",
+    year: "",
+    fuel: "",
+    km: "",
+    price: "",
+    gearType: "",
+    category: "",
+  });
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const data = {
+      userId: localStorage.getItem("currentUser"),
+      title: stateAdvert.title,
+      description: stateAdvert.description,
+      images: [
+        {
+          imageUrl: stateAdvert.imageUrl,
+        },
+      ],
+      vehicle: {
+        brand: stateAdvert.brand,
+        series: stateAdvert.series,
+        model: stateAdvert.model,
+        year: stateAdvert.year,
+        fuel: stateAdvert.fuel,
+        km: stateAdvert.km,
+        price: stateAdvert.price,
+        gearType: stateAdvert.gearType,
+        category: {
+          id: stateAdvert.category,
+        },
+      },
+    };
+
     axios
-      .post("/adverts", {
-        data: {},
+      .post("/adverts", data, {
         headers: {
           Authorization: localStorage.getItem("tokenKey"),
         },
       })
       .then(
         (response) => {
-          const { adverts } = response.data;
-          setIsLoaded(true);
-          setAdvertList(adverts);
+          console.log(response.data);
         },
         (error) => {
-          setIsLoaded(true);
-          setError(error);
+          console.log(error);
         }
       )
       .catch((error) => console.log(error));
-  };
-  
-*/
-  const handleSubmit = (event) => {
-    //saveAdvert();
   };
 
   const imageSelectedHandler = (files) => {
     setLoading(true);
     setUploadedFiles(files);
+    setStateAdvert({ ...stateAdvert, imageUrl: files[0].url });
     setLoading(false);
   };
 
@@ -118,23 +152,77 @@ const AdvertForm = (props) => {
           <Box>
             <FormControl sx={{ m: 1, minWidth: 120 }}>
               <div>
-                <TextField name="title" label="İlan Başlığı" fullWidth />
+                <TextField
+                  name="title"
+                  label="İlan Başlığı"
+                  fullWidth
+                  onChange={(event) =>
+                    setStateAdvert({
+                      ...stateAdvert,
+                      title: event.target.value,
+                    })
+                  }
+                />
               </div>
               <div>
-                <TextField name="brand" label="Marka" fullWidth />
+                <TextField
+                  name="brand"
+                  label="Marka"
+                  fullWidth
+                  onChange={(event) =>
+                    setStateAdvert({
+                      ...stateAdvert,
+                      brand: event.target.value,
+                    })
+                  }
+                />
               </div>
               <div>
-                <TextField name="series" label="Seri" fullWidth />
+                <TextField
+                  name="series"
+                  label="Seri"
+                  fullWidth
+                  onChange={(event) =>
+                    setStateAdvert({
+                      ...stateAdvert,
+                      series: event.target.value,
+                    })
+                  }
+                />
               </div>
               <div>
-                <TextField name="model" label="Model" fullWidth />
+                <TextField
+                  name="model"
+                  label="Model"
+                  fullWidth
+                  onChange={(event) =>
+                    setStateAdvert({
+                      ...stateAdvert,
+                      model: event.target.value,
+                    })
+                  }
+                />
               </div>
               <div>
-                <TextField name="year" label="Yıl" fullWidth />
+                <TextField
+                  name="year"
+                  label="Yıl"
+                  fullWidth
+                  onChange={(event) =>
+                    setStateAdvert({ ...stateAdvert, year: event.target.value })
+                  }
+                />
               </div>
 
               <div>
-                <TextField name="km" label="Kilometre" fullWidth />
+                <TextField
+                  name="km"
+                  label="Kilometre"
+                  fullWidth
+                  onChange={(event) =>
+                    setStateAdvert({ ...stateAdvert, km: event.target.value })
+                  }
+                />
               </div>
             </FormControl>
           </Box>
@@ -152,6 +240,9 @@ const AdvertForm = (props) => {
                   label="Yakıt Türü"
                   sx={{ m: 1, minWidth: 216 }}
                   defaultValue=""
+                  onChange={(event) =>
+                    setStateAdvert({ ...stateAdvert, fuel: event.target.value })
+                  }
                 >
                   <MenuItem value="Benzin">Benzin</MenuItem>
                   <MenuItem value="Dizel">Dizel</MenuItem>
@@ -163,7 +254,17 @@ const AdvertForm = (props) => {
 
             <FormControl sx={{ m: 1, minWidth: 120 }}>
               <div style={{ margin: -18 }}>
-                <TextField name="price" label="Fiyat" fullWidth />
+                <TextField
+                  name="price"
+                  label="Fiyat"
+                  fullWidth
+                  onChange={(event) =>
+                    setStateAdvert({
+                      ...stateAdvert,
+                      price: event.target.value,
+                    })
+                  }
+                />
               </div>
             </FormControl>
 
@@ -175,10 +276,16 @@ const AdvertForm = (props) => {
                   label="Kategori"
                   sx={{ m: 1, minWidth: 216 }}
                   defaultValue=""
+                  onChange={(event) =>
+                    setStateAdvert({
+                      ...stateAdvert,
+                      category: event.target.value,
+                    })
+                  }
                 >
-                  <MenuItem value="otomobil">Otomobil</MenuItem>
-                  <MenuItem value="suv">Arazi, SUV & Pickup</MenuItem>
-                  <MenuItem value="motosiklet">Motosiklet</MenuItem>
+                  <MenuItem value={Number("1")}>Otomobil</MenuItem>
+                  <MenuItem value={Number("2")}>Arazi, SUV & Pickup</MenuItem>
+                  <MenuItem value={Number("3")}>Motosiklet</MenuItem>
                 </Select>
               </FormControl>
             </div>
@@ -191,6 +298,12 @@ const AdvertForm = (props) => {
                   label="Vites Tipi"
                   sx={{ m: 1, minWidth: 216 }}
                   defaultValue=""
+                  onChange={(event) =>
+                    setStateAdvert({
+                      ...stateAdvert,
+                      gearType: event.target.value,
+                    })
+                  }
                 >
                   <MenuItem value="Yarı Otomatik">Yarı Otomatik</MenuItem>
                   <MenuItem value="Otomatik">Otomatik</MenuItem>
@@ -206,6 +319,12 @@ const AdvertForm = (props) => {
                 fullWidth
                 multiline
                 rowsMax={4}
+                onChange={(event) =>
+                  setStateAdvert({
+                    ...stateAdvert,
+                    description: event.target.value,
+                  })
+                }
               />
             </div>
 
