@@ -70,8 +70,8 @@ function Home() {
                     <Card sx={{ width: 240 }}>
                       <CardMedia
                         sx={{ height: 120 }}
-                        image="/Images/kona.png"
-                        title="green iguana"
+                        image={advertDto.images[0].imageUrl}
+                        title="Vehicle Image"
                       />
                       <CardContent>
                         <Typography gutterBottom variant="h10" component="div">

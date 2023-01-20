@@ -41,8 +41,7 @@ const AdvertForm = (props) => {
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [loading, setLoading] = useState(false);
   const classes = useStyles();
-
-  const currentDate = new Date();
+  const refreshPage = () => window.location.reload(true);
 
   const [stateAdvert, setStateAdvert] = useState({
     title: "",
@@ -95,6 +94,7 @@ const AdvertForm = (props) => {
       .then(
         (response) => {
           console.log(response.data);
+          refreshPage();
         },
         (error) => {
           console.log(error);
@@ -230,7 +230,7 @@ const AdvertForm = (props) => {
 
         <Grid xs={7} md={7}>
           <Box>
-            <div>
+            <div style={{ margin: 1 }}>
               <FormControl sx={{ m: 1, minWidth: 120 }}>
                 <InputLabel id="fuel-select-label">Yakıt Türü</InputLabel>
                 <Select
@@ -290,7 +290,7 @@ const AdvertForm = (props) => {
               </FormControl>
             </div>
 
-            <div>
+            <div style={{ margin: -15 }}>
               <FormControl sx={{ m: 1, minWidth: 120 }}>
                 <InputLabel id="gearType-select-label">Vites Tipi</InputLabel>
                 <Select
@@ -312,13 +312,13 @@ const AdvertForm = (props) => {
               </FormControl>
             </div>
 
-            <div>
+            <div style={{ margin: 8 }}>
               <TextField
                 name="description"
                 label="Açıklama"
                 fullWidth
                 multiline
-                rowsMax={4}
+                rows={6}
                 onChange={(event) =>
                   setStateAdvert({
                     ...stateAdvert,
