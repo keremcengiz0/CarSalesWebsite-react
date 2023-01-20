@@ -8,7 +8,8 @@ import Sidebar from "../Sidebar/Sidebar";
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
-import { Tooltip } from "@mui/material";
+import { CardActionArea, Tooltip } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -25,6 +26,11 @@ function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [advertList, setAdvertList] = useState([]);
   const classes = useStyles();
+  let navigate = useNavigate();
+
+  const handleCardClick = (advertId) => {
+    navigate(`/adverts/${advertId}`);
+  };
 
   const refreshAdverts = () => {
     axios
@@ -68,16 +74,24 @@ function Home() {
                 <Grid>
                   <Tooltip title={advertDto.title}>
                     <Card sx={{ width: 240 }}>
-                      <CardMedia
-                        sx={{ height: 120 }}
-                        image={advertDto.images[0].imageUrl}
-                        title="Vehicle Image"
-                      />
-                      <CardContent>
-                        <Typography gutterBottom variant="h10" component="div">
-                          {advertDto.title}
-                        </Typography>
-                      </CardContent>
+                      <CardActionArea
+                        onClick={() => handleCardClick(advertDto.id)}
+                      >
+                        <CardMedia
+                          sx={{ height: 120 }}
+                          image={advertDto.images[0].imageUrl}
+                          title="Vehicle Image"
+                        />
+                        <CardContent>
+                          <Typography
+                            gutterBottom
+                            variant="h10"
+                            component="div"
+                          >
+                            {advertDto.title}
+                          </Typography>
+                        </CardContent>
+                      </CardActionArea>
                     </Card>
                   </Tooltip>
                 </Grid>

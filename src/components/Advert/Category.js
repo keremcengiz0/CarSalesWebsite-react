@@ -8,53 +8,57 @@ import Grid from "@mui/material/Unstable_Grid2";
 import Sidebar from "../Sidebar/Sidebar";
 import React, { useEffect, useState } from "react";
 import { Tooltip } from "@mui/material";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 
 function CategoryAdverts() {
-const [error, setError] = useState(null);
-const [isLoaded, setIsLoaded] = useState(false);
-const [advertList, setAdvertList] = useState([]);
-const location = useLocation();
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [advertList, setAdvertList] = useState([]);
+  const location = useLocation();
 
-const refreshAdverts = () => {
+  const refreshAdverts = () => {
     axios
-    .get(location.pathname)
-    .then(
+      .get(location.pathname)
+      .then(
         (response) => {
-        const {adverts} = response.data;
-        setIsLoaded(true);
-        setAdvertList(adverts);
-    },
-    (error) => {
-        setIsLoaded(true);
-        setError(error);
-    })
-    .catch(error => console.log(error))
-};
+          const { adverts } = response.data;
+          setIsLoaded(true);
+          setAdvertList(adverts);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+      .catch((error) => console.log(error));
+  };
 
-
-useEffect(() => {
+  useEffect(() => {
     refreshAdverts();
-  }, [location.pathname])
+  }, [location.pathname]);
 
-if(error) {                                                      
-    return <div> Error!!! </div>
-} else if(!isLoaded) {                                       
-    return <div> Loading... </div>
-} else {                                                          
+  if (error) {
+    return <div> Error!!! </div>;
+  } else if (!isLoaded) {
+    return <div> Loading... </div>;
+  } else {
     return (
-      
-        <>
+      <>
         <Grid container spacing={2} columns={24}>
           <Grid xs={6} md={4}>
             <Sidebar></Sidebar>
           </Grid>
-  
+
           <Grid xs={18} md={20}>
             <Box>
               <Grid container spacing={2}>
                 <Grid>
-                   <b> {location.pathname.substring(18,location.pathname.length).toUpperCase()} </b> 
+                  <b>
+                    {" "}
+                    {location.pathname
+                      .substring(18, location.pathname.length)
+                      .toUpperCase()}{" "}
+                  </b>
                 </Grid>
               </Grid>
             </Box>
@@ -66,11 +70,15 @@ if(error) {
                       <Card sx={{ width: 240 }}>
                         <CardMedia
                           sx={{ height: 120 }}
-                          image="/Images/kona.png"
+                          image={advertDto.images[0].imageUrl}
                           title="green iguana"
                         />
                         <CardContent>
-                          <Typography gutterBottom variant="h10" component="div">
+                          <Typography
+                            gutterBottom
+                            variant="h10"
+                            component="div"
+                          >
                             {advertDto.title}
                           </Typography>
                         </CardContent>
@@ -83,8 +91,7 @@ if(error) {
           </Grid>
         </Grid>
       </>
-    
     );
-}
+  }
 }
 export default CategoryAdverts;
