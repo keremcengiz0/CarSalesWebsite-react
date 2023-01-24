@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   typography: { paddingTop: 30 },
 }));
 
-const AdvertDetail = () => {
+const AdvertDetail = ({ user }) => {
   const { advertId } = useParams();
   const [isLoaded, setIsLoaded] = useState(false);
   const [advert, setAdvert] = useState(null);
@@ -171,7 +171,7 @@ const AdvertDetail = () => {
         </Container>
       </Grid>
       <Grid item xs={4}>
-        Right Section
+        {advert?.user.firstName} {advert?.user.lastName} {advert?.user.telNo}
       </Grid>
     </Grid>
   );

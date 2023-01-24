@@ -5,6 +5,8 @@ import ListItem from "@material-ui/core/ListItem";
 import Divider from "@material-ui/core/Divider";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import SvgIcon, { SvgIconProps } from "@mui/material/SvgIcon";
+import Box from "@mui/material/Box";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,6 +24,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+function HomeIcon(props: SvgIconProps) {
+  return (
+    <SvgIcon {...props}>
+      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+    </SvgIcon>
+  );
+}
+
 export default function Sidebar() {
   const classes = useStyles();
   const location = useLocation();
@@ -36,7 +46,9 @@ export default function Sidebar() {
       >
         <ListItem>
           <Link className={classes.link} to={{ pathname: "/" }}>
-            <h2>Ana Sayfa</h2>
+            <Box sx={{ marginTop: 0 }}>
+              <HomeIcon />
+            </Box>
           </Link>
         </ListItem>
 
