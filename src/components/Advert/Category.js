@@ -7,14 +7,20 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Unstable_Grid2";
 import Sidebar from "../Sidebar/Sidebar";
 import React, { useEffect, useState } from "react";
-import { Tooltip } from "@mui/material";
+import { Tooltip, CardActionArea } from "@mui/material";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function CategoryAdverts() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [advertList, setAdvertList] = useState([]);
   const location = useLocation();
+  let navigate = useNavigate();
+
+  const handleCardClick = (advertId) => {
+    navigate(`/adverts/${advertId}`);
+  };
 
   const refreshAdverts = () => {
     axios
@@ -68,20 +74,24 @@ function CategoryAdverts() {
                   <Grid>
                     <Tooltip title={advertDto.title}>
                       <Card sx={{ width: 240 }}>
-                        <CardMedia
-                          sx={{ height: 120 }}
-                          image={advertDto.images[0].imageUrl}
-                          title="green iguana"
-                        />
-                        <CardContent>
-                          <Typography
-                            gutterBottom
-                            variant="h10"
-                            component="div"
-                          >
-                            {advertDto.title}
-                          </Typography>
-                        </CardContent>
+                        <CardActionArea
+                          onClick={() => handleCardClick(advertDto.id)}
+                        >
+                          <CardMedia
+                            sx={{ height: 120 }}
+                            image={advertDto.images[0].imageUrl}
+                            title="green iguana"
+                          />
+                          <CardContent>
+                            <Typography
+                              gutterBottom
+                              variant="h10"
+                              component="div"
+                            >
+                              {advertDto.title}
+                            </Typography>
+                          </CardContent>
+                        </CardActionArea>
                       </Card>
                     </Tooltip>
                   </Grid>

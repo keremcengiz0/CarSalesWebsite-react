@@ -7,12 +7,18 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Unstable_Grid2";
 import SidebarUser from "../Sidebar/SidebarUser";
 import React, { useEffect, useState } from "react";
-import { Tooltip } from "@mui/material";
+import { CardActionArea, Tooltip } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 function CurrentUserAdverts() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [advertList, setAdvertList] = useState([]);
+  let navigate = useNavigate();
+
+  const handleCardClick = (advertId) => {
+    navigate(`/adverts/${advertId}`);
+  };
 
   const refreshAdverts = () => {
     axios
@@ -60,20 +66,24 @@ function CurrentUserAdverts() {
                   <Grid>
                     <Tooltip title={advertDto.title}>
                       <Card sx={{ width: 240 }}>
-                        <CardMedia
-                          sx={{ height: 120 }}
-                          image={advertDto.images[0].imageUrl}
-                          title="Vehicle Image"
-                        />
-                        <CardContent>
-                          <Typography
-                            gutterBottom
-                            variant="h10"
-                            component="div"
-                          >
-                            {advertDto.title}
-                          </Typography>
-                        </CardContent>
+                        <CardActionArea
+                          onClick={() => handleCardClick(advertDto.id)}
+                        >
+                          <CardMedia
+                            sx={{ height: 120 }}
+                            image={advertDto.images[0].imageUrl}
+                            title="Vehicle Image"
+                          />
+                          <CardContent>
+                            <Typography
+                              gutterBottom
+                              variant="h10"
+                              component="div"
+                            >
+                              {advertDto.title}
+                            </Typography>
+                          </CardContent>
+                        </CardActionArea>
                       </Card>
                     </Tooltip>
                   </Grid>
