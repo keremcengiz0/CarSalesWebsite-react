@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, Container, FormControl } from "@mui/material";
 import TextField from "@mui/material/TextField";
-import { useTheme } from "@material-ui/core/styles";
+import Avatar from "@mui/material/Avatar";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -19,6 +19,9 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: 10,
   },
   typography: { paddingTop: 30 },
+  avatar: {
+    marginLeft: 20,
+  },
 }));
 
 const AdvertDetail = ({ user }) => {
@@ -171,7 +174,22 @@ const AdvertDetail = ({ user }) => {
         </Container>
       </Grid>
       <Grid item xs={4}>
-        {advert?.user.firstName} {advert?.user.lastName} {advert?.user.telNo}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            marginTop: 20,
+          }}
+        >
+          <Avatar>{advert?.user.firstName.charAt(0).toUpperCase()}</Avatar>
+          <div style={{ marginLeft: 10, fontWeight: "bold" }}>
+            {advert?.user.firstName} {advert?.user.lastName}
+          </div>
+        </div>
+        <div style={{ marginLeft: 10, fontWeight: "bold", paddingTop: 20 }}>
+          Tel No: {advert?.user.telNo}
+        </div>
       </Grid>
     </Grid>
   );
