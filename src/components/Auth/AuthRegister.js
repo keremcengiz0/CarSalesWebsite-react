@@ -6,9 +6,8 @@ import {
   Button,
   FormHelperText,
 } from "@material-ui/core";
-import { useAsyncError, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { PostWithoutAuth } from "../Services/HttpService";
-import { useStepContext } from "@mui/material";
 
 function AuthRegister() {
   const [username, setUsername] = useState("");

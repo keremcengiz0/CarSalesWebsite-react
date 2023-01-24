@@ -4,7 +4,6 @@ import axios from "axios";
 import Grid from "@mui/material/Unstable_Grid2";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, Container, FormControl } from "@mui/material";
@@ -19,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     paddingTop: 10,
   },
-  typography: {},
+  typography: { paddingTop: 30 },
 }));
 
 const AdvertDetail = () => {
@@ -27,7 +26,6 @@ const AdvertDetail = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [advert, setAdvert] = useState(null);
   const classes = useStyles();
-  const theme = useTheme();
 
   useEffect(() => {
     axios
@@ -84,40 +82,90 @@ const AdvertDetail = () => {
       </Grid>
       <Grid item xs={4}>
         <Container
-          sx={{ marginTop: 5, marginLeft: 30 }}
+          sx={{ marginTop: 5, marginLeft: 40 }}
           className={classes.attribute}
         >
           <Typography variant="h6" color="blue" component="p">
             Fiyat: {advert?.vehicle.price} TL
           </Typography>
-          <Typography variant="h6" color="textSecondary" component="p">
+          <Typography
+            variant="h6"
+            color="textSecondary"
+            component="p"
+            className={classes.typography}
+          >
             İlan no: {advert?.id}
           </Typography>
-          <Typography variant="h6" color="textSecondary" component="p">
+          <Typography
+            variant="h6"
+            color="textSecondary"
+            component="p"
+            className={classes.typography}
+          >
             İlan Tarihi: {advert?.advertDate}
           </Typography>
-          <Typography variant="h6" color="textSecondary" component="p">
+          <Typography
+            variant="h6"
+            color="textSecondary"
+            component="p"
+            className={classes.typography}
+          >
             Marka: {advert?.vehicle.brand}
           </Typography>
-          <Typography variant="h6" color="textSecondary" component="p">
+          <Typography
+            variant="h6"
+            color="textSecondary"
+            component="p"
+            className={classes.typography}
+          >
             Seri: {advert?.vehicle.series}
           </Typography>
-          <Typography variant="h6" color="textSecondary" component="p">
+          <Typography
+            variant="h6"
+            color="textSecondary"
+            component="p"
+            className={classes.typography}
+          >
             Model: {advert?.vehicle.model}
           </Typography>
-          <Typography variant="h6" color="textSecondary" component="p">
+          <Typography
+            variant="h6"
+            color="textSecondary"
+            component="p"
+            className={classes.typography}
+          >
             Yıl: {advert?.vehicle.year}
           </Typography>
-          <Typography variant="h6" color="textSecondary" component="p">
+          <Typography
+            variant="h6"
+            color="textSecondary"
+            component="p"
+            className={classes.typography}
+          >
             Yakıt: {advert?.vehicle.fuel}
           </Typography>
-          <Typography variant="h6" color="textSecondary" component="p">
+          <Typography
+            variant="h6"
+            color="textSecondary"
+            component="p"
+            className={classes.typography}
+          >
             Vites Tipi: {advert?.vehicle.gearType}
           </Typography>
-          <Typography variant="h6" color="textSecondary" component="p">
+          <Typography
+            variant="h6"
+            color="textSecondary"
+            component="p"
+            className={classes.typography}
+          >
             KM: {advert?.vehicle.km}
           </Typography>
-          <Typography variant="h6" color="textSecondary" component="p">
+          <Typography
+            variant="h6"
+            color="textSecondary"
+            component="p"
+            className={classes.typography}
+          >
             Kasa Tipi: {advert?.vehicle.category.categoryName}
           </Typography>
         </Container>
