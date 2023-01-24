@@ -35,17 +35,20 @@ export default function Sidebar() {
         aria-label="mailbox folders"
       >
         <ListItem>
-          <Link 
-          className={classes.link} 
-          to={{ pathname: "/" }}>
+          <Link className={classes.link} to={{ pathname: "/" }}>
             <h2>Ana Sayfa</h2>
           </Link>
         </ListItem>
 
         <ListItem
           button
-          component={Link} to={{ pathname: "/adverts/add-adverts" }}
-          className={location.pathname === "/adverts/add-adverts" ? classes.selected: null }
+          component={Link}
+          to={{ pathname: "/adverts/add-adverts" }}
+          className={
+            location.pathname === "/adverts/add-adverts"
+              ? classes.selected
+              : null
+          }
         >
           İlan Ekle
         </ListItem>

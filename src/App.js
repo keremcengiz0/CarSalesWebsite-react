@@ -2,7 +2,8 @@ import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
-import Auth from "./components/Auth/Auth";
+import AuthLogin from "./components/Auth/AuthLogin";
+import AuthRegister from "./components/Auth/AuthRegister";
 import CurrentUserAdverts from "./components/Advert/CurrentUserAdverts";
 import CategoryAdverts from "./components/Advert/Category";
 import AdvertForm from "./components/Advert/AdvertForm";
@@ -14,10 +15,9 @@ function App() {
       <BrowserRouter>
         <Navbar></Navbar>
         <Routes>
-          <Route exact path="/" element={<Home />}>
-            {" "}
-          </Route>
-          <Route exact path="/auth" element={<Auth />}></Route>
+          <Route exact path="/" element={<Home />}></Route>
+          <Route exact path="/auth/login" element={<AuthLogin />}></Route>
+          <Route exact path="/auth/register" element={<AuthRegister />}></Route>
           <Route
             exact
             path="/users/:userId/adverts"
