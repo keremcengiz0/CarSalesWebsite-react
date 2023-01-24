@@ -7,23 +7,19 @@ import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import { Box } from "@mui/material";
+import { Box, Container, FormControl } from "@mui/material";
 import TextField from "@mui/material/TextField";
+import { useTheme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
-  GridImage: {
-    flexWrap: "wrap",
-    justifyContent: "left",
-    alignItems: "center",
-    marginLeft: 40,
-    marginTop: 50,
+  title: {
+    marginTop: 20,
   },
-  Title: {
-    marginLeft: 40,
+  attribute: {
+    textAlign: "left",
+    paddingTop: 10,
   },
-  Description: {
-    marginTop: 50,
-  },
+  typography: {},
 }));
 
 const AdvertDetail = () => {
@@ -31,6 +27,7 @@ const AdvertDetail = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [advert, setAdvert] = useState(null);
   const classes = useStyles();
+  const theme = useTheme();
 
   useEffect(() => {
     axios
@@ -46,65 +43,87 @@ const AdvertDetail = () => {
   }, [advertId]);
 
   return (
-    <Grid container spacing={4}>
+    <Grid container>
       <Grid item xs={4}>
-        <Box className={classes.Title}>
-          <Typography gutterBottom variant="h5" component="h2" align="left">
-            {advert?.title}
+        <Container className={classes.title} sx={{ marginLeft: 5 }}>
+          <Typography gutterBottom variant="h6" component="h2" align="left">
+            <b>{advert?.title}</b>
           </Typography>
-        </Box>
-        <Card sx={{ width: 440 }} className={classes.GridImage}>
-          {advert && (
-            <CardMedia
-              sx={{ height: 220 }}
-              image={advert.images[0].imageUrl}
-              title="Vehicle Image"
-            />
-          )}
-        </Card>
-        <Box className={classes.Description}>
-          <h4>Açıklama</h4>
-          <TextField
-            variant="outlined"
-            color="secondary"
-            multiline
-            defaultValue=""
-            rows={10}
-            sx={{ width: 440, height: 220 }}
-            value={advert?.description}
-          />
-        </Box>
-      </Grid>
 
+          <Card sx={{ width: "100%", height: 300 }}>
+            {advert && (
+              <CardMedia
+                sx={{ height: "100%", objectFit: "contain" }}
+                image={advert.images[0].imageUrl}
+                title="Vehicle Image"
+              />
+            )}
+          </Card>
+          <Box className={classes.Description}>
+            <Typography
+              gutterBottom
+              variant="h6"
+              component="h2"
+              align="left"
+              paddingTop={8}
+            >
+              <b>Açıklama</b>
+            </Typography>
+            <FormControl sx={{ width: "100%" }}>
+              <TextField
+                variant="outlined"
+                color="secondary"
+                multiline
+                defaultValue=""
+                rows={10}
+                value={advert?.description}
+              />
+            </FormControl>
+          </Box>
+        </Container>
+      </Grid>
       <Grid item xs={4}>
-        {advert && (
-          <CardContent>
-            <Typography variant="body2" color="textSecondary" component="p">
-              Marka: {advert?.vehicle.brand}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              Seri: {advert?.vehicle.series}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              Model: {advert?.vehicle.model}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              Yıl: {advert?.vehicle.year}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              Yakıt: {advert?.vehicle.fuel}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              KM: {advert?.vehicle.km}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              Fiyat: {advert?.vehicle.price}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              Vites Tipi: {advert?.vehicle.gearType}
-            </Typography>
-          </CardContent>
-        )}
+        <Container
+          sx={{ marginTop: 5, marginLeft: 30 }}
+          className={classes.attribute}
+        >
+          <Typography variant="h6" color="blue" component="p">
+            Fiyat: {advert?.vehicle.price} TL
+          </Typography>
+          <Typography variant="h6" color="textSecondary" component="p">
+            İlan no: {advert?.id}
+          </Typography>
+          <Typography variant="h6" color="textSecondary" component="p">
+            İlan Tarihi: {advert?.advertDate}
+          </Typography>
+          <Typography variant="h6" color="textSecondary" component="p">
+            Marka: {advert?.vehicle.brand}
+          </Typography>
+          <Typography variant="h6" color="textSecondary" component="p">
+            Seri: {advert?.vehicle.series}
+          </Typography>
+          <Typography variant="h6" color="textSecondary" component="p">
+            Model: {advert?.vehicle.model}
+          </Typography>
+          <Typography variant="h6" color="textSecondary" component="p">
+            Yıl: {advert?.vehicle.year}
+          </Typography>
+          <Typography variant="h6" color="textSecondary" component="p">
+            Yakıt: {advert?.vehicle.fuel}
+          </Typography>
+          <Typography variant="h6" color="textSecondary" component="p">
+            Vites Tipi: {advert?.vehicle.gearType}
+          </Typography>
+          <Typography variant="h6" color="textSecondary" component="p">
+            KM: {advert?.vehicle.km}
+          </Typography>
+          <Typography variant="h6" color="textSecondary" component="p">
+            Kasa Tipi: {advert?.vehicle.category.categoryName}
+          </Typography>
+        </Container>
+      </Grid>
+      <Grid item xs={4}>
+        Right Section
       </Grid>
     </Grid>
   );
