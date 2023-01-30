@@ -1,70 +1,67 @@
-# Getting Started with Create React App
+# Car Sales Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+In this project, vehicles are advertised. First, you must create an account and log in. You can add an ad from your profile page and see your existing ads. All ads are listed on the main page. You can also list them by vehicle category if desired. You can go to the page where you can see the ad details by clicking on the ads. Ads will be able to be deleted and updated. The project is in the development phase and has not yet been completed. 
 
-In the project directory, you can run:
+## Technologies Used For FrontEnd
+- React.js
+- Material UI
 
-### `npm start`
+## Cloud Technologies
+- Cloudinary 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Cloudinary is an end-to-end image and video management solution for web and mobile applications. It's used to store, process, and deliver images and videos for websites and apps, handling tasks such as resizing, cropping, and optimizing media assets. Cloudinary also provides various tools and features for managing and manipulating media assets, including content delivery networks and media libraries, making it a comprehensive solution for managing media in the cloud.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**Uploaded images are stored on this page.**
+![cloudinary-images-db](https://user-images.githubusercontent.com/112478277/215500284-99355eb6-0887-4eca-b130-bdccc5e5e87b.png)
 
-### `npm test`
+## IDE
+- Visual Studio Code
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Running questapp locally
+```
+	git clone https://github.com/keremcengiz0/CarSalesProject-react.git
+```
 
-### `npm run build`
+After running the BackEnd, you can run the project with the **`npm start`** command.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+You can then access questapp here: http://localhost:3000 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+You can visit this repository for the BackEnd part. ==> [Car-Sales-Project](https://github.com/keremcengiz0/CarSalesProject)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Images From Project
 
-### `npm run eject`
+### Auth Login And Resgister Page
+![auth-login-page](https://user-images.githubusercontent.com/112478277/215497177-9c6519e2-0128-4ecc-90d9-79788e686564.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Auth Resgister Page
+![auth-register-page](https://user-images.githubusercontent.com/112478277/215497232-bd740ff0-9614-49c0-91b4-34051f7c5942.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Home Page
+![vehicle showcase](https://user-images.githubusercontent.com/112478277/215495540-62625a01-8fa6-4bf9-b91c-eea168f3df13.png)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Advert Detail Page
+![advert-detail-page](https://user-images.githubusercontent.com/112478277/215495684-88bfd4ff-d4c1-442d-aec2-8cb4a7adcd82.png)
+![advert-detail-page-2](https://user-images.githubusercontent.com/112478277/215497489-014cb40e-7556-4932-93de-f57bd2918d38.png)
 
-## Learn More
+### Category Page 1
+![filter-by-category-1](https://user-images.githubusercontent.com/112478277/215497655-4c20ba1d-7106-4c8f-902e-daba7cf4dcdc.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Category Page 2
+![filter-by-category-2](https://user-images.githubusercontent.com/112478277/215497987-0a519965-6e3c-421e-a850-b1c261abc5dc.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Category Page 2
+![filter-by-category-3](https://user-images.githubusercontent.com/112478277/215498029-47539fc5-cc80-4e87-8ba8-69dae651129d.png)
 
-### Code Splitting
+### Add Advert Page Blank
+![add-advert-page](https://user-images.githubusercontent.com/112478277/215498162-181b882f-d4e3-41b3-b4b3-30cb4d1ab47c.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Add Advert Page Filled
+![add-advert-page-full](https://user-images.githubusercontent.com/112478277/215498261-8cc63ca6-13b7-4a5a-a8cf-0d4ba55c21de.png)
 
-### Analyzing the Bundle Size
+### Uploading Image Screen
+![uploading_image_screen](https://user-images.githubusercontent.com/112478277/215498361-515d262e-0577-4b21-adae-9f3b7dd8deef.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Current User Adverts Page
+![current-user-advert-page](https://user-images.githubusercontent.com/112478277/215498509-e55ded90-8d61-411c-99c4-f05aacff9800.png)
