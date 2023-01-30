@@ -35,7 +35,7 @@ You can visit this repository for the BackEnd part. ==> [Car-Sales-Project](http
 ![auth-login-page](https://user-images.githubusercontent.com/112478277/215497177-9c6519e2-0128-4ecc-90d9-79788e686564.png)
 
 
-### Auth Resgister Page
+### Auth Register Page
 ![auth-register-page](https://user-images.githubusercontent.com/112478277/215497232-bd740ff0-9614-49c0-91b4-34051f7c5942.png)
 
 ### Home Page
