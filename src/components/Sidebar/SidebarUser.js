@@ -5,7 +5,7 @@ import ListItem from "@material-ui/core/ListItem";
 import Divider from "@material-ui/core/Divider";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import SvgIcon, { SvgIconProps } from "@mui/material/SvgIcon";
+import SvgIcon from "@mui/material/SvgIcon";
 import Box from "@mui/material/Box";
 
 const useStyles = makeStyles((theme) => ({
